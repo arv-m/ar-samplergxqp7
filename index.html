@@ -44,16 +44,15 @@ limitations under the License.
      *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
      *    out, and that is where we update the UI.
      */
-     function initApp() {
+     function clickSignIn() {
       // Result from Redirect auth flow.
-      if (!firebase.auth().currentUser) {
-        var provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/plus.login');
-        firebase.auth().signInWithRedirect(provider);
-              firebase.auth().getRedirectResult().then(function(result) {
+     var provider = new firebase.auth.GoogleAuthProvider();
+     provider.addScope('https://www.googleapis.com/auth/plus.login');
+     firebase.auth().signInWithRedirect(provider);
+     firebase.auth().getRedirectResult().then(function(result) {
 
         // The signed-in user info.
-        var user = result.user;
+     var user = result.user;
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -70,13 +69,13 @@ limitations under the License.
           console.error(error);
         }
       });
-      }
-      else
-      {
-          window.location.assign("app.html");
-      }
+      
+      document.getElementById('quickstart-sign-in').disabled = true;
+      document.getElementById('quickstart-sign-in').textContent = 'Signing in';
+    }
 
 
+     function initApp() {
       // Listening for auth state changes.
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -88,9 +87,20 @@ limitations under the License.
           var isAnonymous = user.isAnonymous;
           var uid = user.uid;
           var providerData = user.providerData;
-          window.location.assign("app.html");
+          document.getElementById('quickstart-sign-in').disabled = true;
+          if (window.location.pathname !== "/app.html"){
+            window.location.assign("app.html");
+            
         }
+        }      
       });
+
+      setTimeout(function(){
+        document.getElementById('quickstart-sign-in').disabled = false;
+      }, 5000);
+      
+      
+      document.getElementById('quickstart-sign-in').addEventListener('click', clickSignIn, false);
 
     }
 
@@ -117,13 +127,13 @@ limitations under the License.
       <!-- Container for the demo -->
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
         <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
-          <h2 class="mdl-card__title-text">Google Authentication with redirect 8 </h2>
+          <h2 class="mdl-card__title-text">Google Authentication with redirect 16 </h2>
         </div>
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
           <p>Sign in with your Google account below.</p>
 
           <!-- Button that handles sign-in/sign-out -->
-          <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in">Sign in with Google</button>
+          <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in">Start Game</button>
 
           <!-- Container where we'll display the user details -->
           <div class="quickstart-user-details-container">

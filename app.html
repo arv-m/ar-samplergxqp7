@@ -6,10 +6,10 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>TH-MAXI</title>
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-<script src="/__/firebase/9.8.3/firebase-app-compat.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.3/aframe/build/aframe-ar-nft.js"></script>
+<!-- <script src="/__/firebase/9.8.3/firebase-app-compat.js"></script>
 <script src="/__/firebase/9.8.3/firebase-auth-compat.js"></script>
-<script src="/__/firebase/init.js"></script>
+<script src="/__/firebase/init.js"></script> -->
    
 </head>
 
@@ -33,9 +33,35 @@
     color: white;
   }
 </style>
-<script>
+<!-- <script>
+  nft_url = "https://arv-m.github.io/ar-samplergxqp7/assets/car/car";
+  const markup = `
+  <a-nft id="nft-marker"
+      markerhandler
+      type="nft"
+      url=${nft_url}>
+    </a-nft>
+`;
+document.getElementById("nft-marker").outerHTML = markup;
+</script> -->
+
+<!-- <script>
+  window.addEventListener("DOMContentLoaded", function() {
+  var nft_url = document.getElementById("nft-marker");
+  nft_url.setAttribute("url", "https://arv-m.github.io/ar-samplergxqp7/assets/notice/notice");
+  }, false);
+</script> -->
+
+<!-- <script defer type="text/javascript">
+function replaceURL() {
   
-</script>
+}
+  
+  window.onload = function() {
+      replaceURL();
+    };
+</script> -->
+
 
 <script>
     AFRAME.registerComponent('markerhandler', {
@@ -48,21 +74,11 @@
 });
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 const user = firebase.auth().currentUser;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-  // The user object has basic properties such as display name, email, etc.
-  const displayName = user.displayName;
-  const email = user.email;
-  const photoURL = user.photoURL;
-  const emailVerified = user.emailVerified;
 
-  // The user's ID, unique to the Firebase project. Do NOT use
-  // this value to authenticate with your backend server, if
-  // you have one. Use User.getIdToken() instead.
-  const uid = user.uid;
-  console.log(user.displayName)
 document.getElementById('username').textContent = user.displayName;
 }
 
@@ -71,8 +87,7 @@ else {
 }
 });
 
-
-</script>
+</script> -->
 
 
 <body style="margin : 0px; overflow: hidden;">
@@ -96,10 +111,12 @@ else {
     <a-nft
       markerhandler
       type="nft"
-      url="https://arv-m.github.io/ar-samplergxqp7/assets/sculp_near/sculp_near">
+      url="https://arv-m.github.io/ar-samplergxqp7/assets/car/car">
     </a-nft>
     <a-entity camera></a-entity>
   </a-scene>
+
+
 </body>
 
 </html>
